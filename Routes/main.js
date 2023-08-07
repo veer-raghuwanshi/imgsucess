@@ -91,8 +91,8 @@ Router.route("/user").get(async (req, res) => {
 });
 
 
-// Router.route("/user").get(async (req, res) => {
-//   res.send("--- Get All User ---");
-// });
+Router.route("/").get(async (req, res) => {
+  res.send("--- Get All User----api/user---");
+});
 
 module.exports = Router;
