@@ -20,6 +20,17 @@ const StartServer = async () => {
         useUnifiedTopology: true,
       }
     );
+    let cors = require("cors");
+    app.use(cors());
+
+    app.use((req,res,next)=>{
+      res.setHeader('Access-Control-Allow-Origin','*');
+      res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+      res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+      next(); 
+  })
+
+
     app.listen(PORT, () => {
       console.log(`Server is Connected to Database and running on PORT ${PORT}`);
     });
