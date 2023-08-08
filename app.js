@@ -2,6 +2,16 @@ const express = require("express");
 const Router = require("./Routes/main");
 const mongoose = require("mongoose");
 const app = express();
+let cors = require("cors");
+app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from any origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+
 
 require("dotenv").config();
 
@@ -20,15 +30,9 @@ const StartServer = async () => {
         useUnifiedTopology: true,
       }
     );
-    let cors = require("cors");
-    app.use(cors());
 
-    app.use((req,res,next)=>{
-      res.setHeader('Access-Control-Allow-Origin','*');
-      res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
-      res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
-      next(); 
-  })
+
+ 
 
 
     app.listen(PORT, () => {
